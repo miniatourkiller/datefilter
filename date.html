@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/jquery.js"></script>
+</head>
+<body>START
+    <input id="start" type="date"><br>
+    STOP <input id="stop" type="date">
+    <button id="filter">filter</button>
+    <script>
+        const oneday = 24*60*60*1000;
+
+        $(document).ready(function(){
+            $('#filter').click(function(){
+                var start = $('#start').val();
+                var stop = $('#stop').val();
+                const startDate = new Date(start);
+                const stopDate = new Date(stop);
+                const diff = Math.round(Math.abs((startDate-stopDate)/oneday))
+             //   console.log(Date.now())
+               
+            //    console.log(dt.getTime())
+                var datesArray = [];
+            for(var i=0;i<=diff;i++){
+                    var newDate = new Date(startDate.getTime()+ i * 86400000)
+               
+                var newDay = newDate.getDate(),
+                    newMonth = newDate.getMonth() + 1,
+                    newYear = newDate.getFullYear(),
+                    newFormattedDate = newYear + "-0" + newMonth + "-" + newDay;
+             //   console.log(newFormattedDate)
+                datesArray.push(newFormattedDate);
+            }
+           console.log(datesArray);
+            
+            })
+        })
+    </script>
+</body>
+</html>
